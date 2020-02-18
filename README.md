@@ -20,6 +20,7 @@ NOTE: Currently in pre-release, all phone numbers must be whitelisted prior to u
 
 ## To-Do
 - Add Caching & rate-limiting
+- Add a plaintext feature
 - Create a "HELP" feature
 - Create a subscription feature
 
