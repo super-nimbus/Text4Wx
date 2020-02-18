@@ -26,9 +26,11 @@ def home():
     r_type = query[0].lower()
 
     #Station ID
-    r_loc = query[1].upper()
+    r_loc = 0
 
-    
+    if len(query) > 1:
+        r_loc = query[1].upper()
+
 
     #Plaintext
     pt = 0
@@ -39,6 +41,13 @@ def home():
     #print(r_loc)
     #print(pt)
 
+    #Query for help
+    if r_type == 'help':
+        body ="Text4Wx\n-------------\n<sample help instructions here"
+        message.body(body)
+        resp.append(message)
+        return str(resp)
+
     #Query for METAR/TAF
     if r_type == 'metar' or r_type == 'taf' or r_type == 'm' or r_type == 't':
         message.body(getReport(r_loc, r_type, pt))
@@ -47,22 +56,16 @@ def home():
 
     #Query for Station Info
 
-    if r_type == 'info':
+    if r_type == 'info' or r_type == 'i':
         r_type = 'station'
         message.body(getReport(r_loc, r_type, pt))
         resp.append(message)
         return str(resp)
-    
-    #Query for help
 
- #   if r_type == 'help':
-    
 
-    
     #Invalid Query
     message.body("Sorry, I didn't catch that. Try searching again.")
     resp.append(message)
-
     return str(resp)
     
 
@@ -91,7 +94,7 @@ def getReport(r_loc, r_type, pt):
 
     print(r_type)
     if (r_type == 'station'):
-        body = f"Name: {parse['name']}\nLocation: {parse['note']}\nCountry: {parse['country']}\nICAO ID: {parse['icao']}"
+        body = f"Name: {parse['name']}\nLocation: {parse['city']}\nCountry: {parse['country']}\nICAO ID: {parse['icao']}"
         print(body)
         return(body)
     
