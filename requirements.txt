@@ -1,5 +1,5 @@
 requests
-json
-os
 python-dotenv
 twilio
+flask
+virtualenv
