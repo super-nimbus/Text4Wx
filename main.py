@@ -16,11 +16,17 @@ def home():
     sender = request.form['From']
     body = request.form['Body']
 
-    print(body)
+    query = body.split()
+
+    r_type = query[0]
+    r_loc = query[1]
+
+    print(r_type)
+    print(r_loc)
 
     resp = MessagingResponse()
     message = Message()
-    message.body(f'{sender} said {body}')
+    message.body(getReport(r_loc, r_type))
     resp.append(message)
 
     return str(resp)
@@ -29,22 +35,30 @@ def home():
 ###########################################################
 
 #QUERY AIRPORT
-# s_id = "CYYZ"
+
+def getReport(r_loc, r_type):
 
 
-# wx_auth = os.getenv('wx_auth')
+    print(r_type)
+    print(r_loc)
 
-# headers = {
-#     'Authorization': wx_auth
-# }
+    wx_auth = os.getenv('wx_auth')
 
-# #GET METAR FOR QUERY
-# response = requests.get(f"https://avwx.rest/api/metar/{s_id}", headers=headers)
+    headers = {
+        'Authorization': wx_auth
+    }
 
+    print(f"https://avwx.rest/api/{r_type.lower()}/{r_loc.upper()}")
 
-# parse = json.dumps(response.json(), indent= 4, sort_keys= True)
+    #GET METAR FOR QUERY
+    response = requests.get(f"https://avwx.rest/api/{r_type.lower()}/{r_loc.upper()}", headers=headers)
 
-# print(response.status_code)
+    print(response) 
+
+    parse = response.json()
+
+    print(parse['raw'])
+    return(parse['raw'])
 
 ###########################################################
 
