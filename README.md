@@ -12,16 +12,26 @@ Make use of SMS speed and reliability to quickly and reliably receive any aviati
 
 
 ## How to use
+**NOTE:** Currently in pre-release, all phone numbers must be whitelisted prior to use.
+
+### METAR/TAF
 Text "<METAR/TAF> <\ICAO STATION ID>\" (case insensitive) to **+1 (678) 621-2178** to receive the latest forecast for the requested station.
 
+### PLAINTEXT METAR/TAF
+Text "<METAR/TAF> <\ICAO STATION ID>\ pt" (case insensitive) to **+1 (678) 621-2178** to receive the latest forecast for the requested station.
 
-NOTE: Currently in pre-release, all phone numbers must be whitelisted prior to use.
+### STATION INFO
+Text "INFO <\ICAO STATION ID>\" (case insensitive) to **+1 (678) 621-2178** to receive reporting station information.
+
+### HELP
+Text "HELP" (case insensitive) to **+1 (678) 621-2178** to receive a list of commands for this service.
 
 
 ## To-Do
 - Add Caching & rate-limiting
-- Add a plaintext feature
-- Create a "HELP" feature
+- Add a plaintext feature (command added, need to add functional translation)
+- Create a "HELP" feature (Roadblocked with Twilio API)
+- Catch Invalid ICAO Stations
 - Create a subscription feature
 
 

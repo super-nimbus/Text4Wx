@@ -22,31 +22,33 @@ def home():
 
     query = body.split()
 
-    #Report Type
+    #Determine Report Type
     r_type = query[0].lower()
 
-    #Station ID
+    #Determine Station ID
     r_loc = 0
 
     if len(query) > 1:
         r_loc = query[1].upper()
 
 
-    #Plaintext
+    #Determine Plaintext
     pt = 0
     if len(query) == 3 and query[2].lower() == 'pt':
         pt = True
 
     print(r_type)
-    #print(r_loc)
-    #print(pt)
 
     #Query for help
+    #************************************************************************
+    #CURRENT ISSUE: TWILIO API HAS AN OVERRIDING OPT-OUT FUNCTION FOR 'HELP'
+    #************************************************************************
     if r_type == 'help':
         body ="Text4Wx\n-------------\n<sample help instructions here"
         message.body(body)
         resp.append(message)
         return str(resp)
+
 
     #Query for METAR/TAF
     if r_type == 'metar' or r_type == 'taf' or r_type == 'm' or r_type == 't':
@@ -54,8 +56,8 @@ def home():
         resp.append(message)
         return str(resp)
 
-    #Query for Station Info
 
+    #Query for Station Info
     if r_type == 'info' or r_type == 'i':
         r_type = 'station'
         message.body(getReport(r_loc, r_type, pt))
@@ -64,7 +66,7 @@ def home():
 
 
     #Invalid Query
-    message.body("Sorry, I didn't catch that. Try searching again.")
+    message.body("""Sorry, I didn't catch that.\nTry searching again. Type "HELP" for a list of commands.""")
     resp.append(message)
     return str(resp)
     
