@@ -28,13 +28,14 @@ def home():
     #Determine Station ID
     r_loc = 0
 
-    if len(query) > 1:
+    try:
         r_loc = query[1].upper()
+    except:
+        r_loc = 0
 
-
-    #Determine Plaintext
     pt = 0
-    if len(query) == 3 and query[2].lower() == 'pt':
+    #Determine Plaintext
+    if len(query) >= 3 and query[2].lower() == 'pt':
         pt = True
 
     print(r_type)
@@ -47,7 +48,10 @@ def home():
 
     #Query for METAR/TAF
     if r_type == 'metar' or r_type == 'taf' or r_type == 'm' or r_type == 't':
-        message.body(getReport(r_loc, r_type, pt))
+        try:
+            message.body(getReport(r_loc, r_type, pt))
+        except:
+            message.body(f"Sorry, no reporting information found for {r_loc}")
         resp.append(message)
         return str(resp)
 
