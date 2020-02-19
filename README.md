@@ -36,4 +36,4 @@ Text "HELP" (case insensitive) to **+1 (678) 621-2178** to receive a list of com
 
 
 #### Disclaimer
-Text4Wx is not responsible for any of the data provided. Interpretation and utilization of the data provided is at the sole discretion of the user.
+Text4Wx is not responsible for any of the data provided. Interpretation and utilization of the data provided is at the sole discretion of the user. Data provided from NOAA ADDS. 100% Service Availability is not Guaranteed.
