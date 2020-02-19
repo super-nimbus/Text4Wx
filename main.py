@@ -10,7 +10,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-@app.route('/app', methods = ['POST'])
+@app.route('/', methods = ['POST'])
 def home():
     #Define Response
     resp = MessagingResponse()
@@ -39,15 +39,10 @@ def home():
 
     print(r_type)
 
-    #Query for help
-    #************************************************************************
-    #CURRENT ISSUE: TWILIO API HAS AN OVERRIDING OPT-OUT FUNCTION FOR 'HELP'
-    #************************************************************************
+    #Query for help: Config set up with Twilio Advanced Opt-Out --> see Twilio Console
     if r_type == 'help':
-        body ="Text4Wx\n-------------\n<sample help instructions here"
-        message.body(body)
-        resp.append(message)
-        return str(resp)
+        
+        return 0
 
 
     #Query for METAR/TAF
