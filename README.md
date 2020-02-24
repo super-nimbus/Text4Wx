@@ -8,7 +8,7 @@ Aviation Weather Reports by Text
 ## Receive METARs & TAFs by text
 Need to find the latest METAR/TAF forecasts in a flash? Spotty Internet Connection? 
 
-Make use of SMS speed and reliability to quickly and reliably receive any aviation forecast you need with Text4Wx!
+Make use of SMS speed and dependability to quickly and reliably receive any aviation forecast you need with Text4Wx!
 
 
 ## How to use
