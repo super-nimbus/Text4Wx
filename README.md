@@ -28,10 +28,9 @@ Text "HELP" (case insensitive) to **+1 (678) 621-2178** to receive a list of com
 
 
 ## To-Do
-- Add Caching & rate-limiting
 - Add a plaintext feature (command added, need to add functional translation)
-- Create a "HELP" feature (Roadblocked with Twilio API)
-- Catch Invalid ICAO Stations
+- Add Radio Frequencies for Station Info (Need to find API)
+- Add Caching & rate-limiting
 - Create a subscription feature
 
 
