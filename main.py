@@ -26,32 +26,46 @@ def home():
     r_type = query[0].lower()
 
     #Determine Station ID
-    r_loc = 0
-
     try:
         r_loc = query[1].upper()
     except:
-        r_loc = 0
+        r_loc = False 
 
-    pt = 0
+    
     #Determine Plaintext
-    if len(query) >= 3 and query[2].lower() == 'pt':
-        pt = True
+    try:
+        if query[2].lower() == 'pt':
+            pt = True
+        else:
+            pt = False
+    except:
+        pt = False
 
     print(r_type)
 
     #Query for help: Config set up with Twilio Advanced Opt-Out --> see Twilio Console
     if r_type == 'help':
-        
         return 0
 
 
     #Query for METAR/TAF
     if r_type == 'metar' or r_type == 'taf' or r_type == 'm' or r_type == 't':
-        try:
-            message.body(getReport(r_loc, r_type, pt))
-        except:
-            message.body(f"Sorry, no reporting information found for {r_loc}")
+        if not r_loc:
+            message.body(f"Please enter a Station ID")
+
+        else:
+            if r_type == 'm':
+                r_type = 'metar'
+                
+            if r_type == 't':
+                r_type = 'taf'
+            
+            try:
+                message.body(getReport(r_loc, r_type, pt))
+
+            except:
+                message.body(f"Sorry, no reporting information found for {r_loc}")
+
         resp.append(message)
         return str(resp)
 
@@ -72,6 +86,7 @@ def home():
 
 ###########################################################
 
+# NEED TO SET UP PLAINTEXT FUNCTIONALITY
 def getReport(r_loc, r_type, pt):
 
 
@@ -94,6 +109,7 @@ def getReport(r_loc, r_type, pt):
     parse = response.json()
 
     print(r_type)
+
     if (r_type == 'station'):
         body = f"Name: {parse['name']}\nLocation: {parse['city']}\nCountry: {parse['country']}\nICAO ID: {parse['icao']}"
         print(body)
