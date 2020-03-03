@@ -43,7 +43,7 @@ def home():
 
     print(r_type)
 
-    #Query for help: Config set up with Twilio Advanced Opt-Out --> see Twilio Console
+    #Query for help: Configured with Twilio Advanced Opt-Out --> see Twilio Console
     if r_type == 'help':
         return 0
 
@@ -111,7 +111,32 @@ def getReport(r_loc, r_type, pt):
     print(r_type)
 
     if (r_type == 'station'):
-        body = f"Name: {parse['name']}\nLocation: {parse['city']}\nCountry: {parse['country']}\nICAO ID: {parse['icao']}"
+        
+        runways = ""
+
+        for runway in parse['runways']:
+            runways = f"{runway['ident1']}/{runway['ident2']}: {runway['length_ft']} by {runway['width_ft']} ft\n"
+
+        body = f"""Name: {parse['name']}\nLocation: {parse['city']}\n
+                    Country: {parse['country']}\n\nICAO ID: {parse['icao']}\n
+                    Lat/Long: {parse['latitude']}, {parse['longitude']}\n
+                    Field Elevation (ft): {parse['elevation_ft']}\n
+                    Runways:\n{runways}"""
+        print(body)
+        return(body)
+    
+    elif (r_type == 'metar' and pt):
+        clouds = ""
+        
+        for layer in parse['clouds']:
+            clouds = clouds + layer['repr'] + ', '
+
+        body = f"""Station: {parse['icao']}\nIssued {parse['time']['dt']}\n\n 
+                    Winds: {parse['wind_speed']['repr']} knots from {parse['wind_direction']['repr']} degrees\n
+                    Visibility: {parse['visibility']['repr']} statute miles\n
+                    Cloud layers: {clouds}\n
+                    Temperature: {parse['temperature']['repr']}\nDewpoint: {parse['dewpoint']['repr']}\n
+                    Altimeter setting: {parse['altimeter']['value']}\n"""
         print(body)
         return(body)
     
