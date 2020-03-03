@@ -34,7 +34,7 @@ def home():
     
     #Determine Plaintext
     try:
-        if query[2].lower() == 'pt':
+        if query[-1].lower() == 'pt':
             pt = True
         else:
             pt = False
@@ -92,6 +92,7 @@ def getReport(r_loc, r_type, pt):
 
     #print(r_type)
     #print(r_loc)
+    print(pt)
 
     wx_auth = os.getenv('wx_auth')
 
@@ -113,30 +114,28 @@ def getReport(r_loc, r_type, pt):
     if (r_type == 'station'):
         
         runways = ""
-
+        latitude = '{:4.7}'.format(parse['latitude'])
+        longitude = '{:4.7}'.format(parse['longitude'])
         for runway in parse['runways']:
-            runways = f"{runway['ident1']}/{runway['ident2']}: {runway['length_ft']} by {runway['width_ft']} ft\n"
+            if (int(runway['ident1'][:2]) + 18 == int(runway['ident2'][:2]) or int(runway['ident1'][:2]) == int(runway['ident2'][:2]) + 18):
+                runways = runways + f"{runway['ident1']}/{runway['ident2']}: {runway['length_ft']} by {runway['width_ft']} ft\n"
 
-        body = f"""Name: {parse['name']}\nLocation: {parse['city']}\n
-                    Country: {parse['country']}\n\nICAO ID: {parse['icao']}\n
-                    Lat/Long: {parse['latitude']}, {parse['longitude']}\n
-                    Field Elevation (ft): {parse['elevation_ft']}\n
-                    Runways:\n{runways}"""
+        body = f"Name: {parse['name']}\nLocation: {parse['city']}\nCountry: {parse['country']}\n\nICAO ID: {parse['icao']}\nLat/Long: {latitude}, {longitude}\nField Elevation (ft): {parse['elevation_ft']}\n\nRunways:\n{runways}"
         print(body)
         return(body)
     
     elif (r_type == 'metar' and pt):
         clouds = ""
-        
+
         for layer in parse['clouds']:
             clouds = clouds + layer['repr'] + ', '
 
-        body = f"""Station: {parse['icao']}\nIssued {parse['time']['dt']}\n\n 
-                    Winds: {parse['wind_speed']['repr']} knots from {parse['wind_direction']['repr']} degrees\n
-                    Visibility: {parse['visibility']['repr']} statute miles\n
-                    Cloud layers: {clouds}\n
-                    Temperature: {parse['temperature']['repr']}\nDewpoint: {parse['dewpoint']['repr']}\n
-                    Altimeter setting: {parse['altimeter']['value']}\n"""
+        clouds = clouds[:-2]
+        
+        print(clouds)
+
+        body = f"Station: {r_loc.upper()}\nIssued: {parse['time']['dt']}\nWinds: {parse['wind_speed']['repr']} knots from {parse['wind_direction']['repr']} degrees\nVisibility: {parse['visibility']['repr']} statute miles\nCloud layers: {clouds}\nTemperature: {parse['temperature']['repr']} C\nDewpoint: {parse['dewpoint']['repr']} C\nAltimeter setting: {parse['altimeter']['value']}\n"
+        print('end body')
         print(body)
         return(body)
     
