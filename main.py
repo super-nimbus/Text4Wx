@@ -17,7 +17,7 @@ def home():
     message = Message()
 
     #Isolate Query Information
-    sender = request.form['From']
+    #sender = request.form['From']
     body = request.form['Body']
 
     query = body.split()
@@ -86,13 +86,13 @@ def home():
 
 ###########################################################
 
-# NEED TO SET UP PLAINTEXT FUNCTIONALITY
+# NEED TO SET UP PLAINTEXT TAF FUNCTIONALITY
 def getReport(r_loc, r_type, pt):
 
 
     #print(r_type)
     #print(r_loc)
-    print(pt)
+    #print(pt)
 
     wx_auth = os.getenv('wx_auth')
 
@@ -144,23 +144,6 @@ def getReport(r_loc, r_type, pt):
         return(parse['raw'])
 
 ###########################################################
-
-
-#Twilio Set Up
-# twil_id = os.getenv('twil_id')
-# twil_auth_token = os.getenv('twil_auth_token')
-# client = Client(twil_id, twil_auth_token)
-
-# twil_num = os.getenv('twil_num')
-# real_num = os.getenv('real_num')
-
-
-# message = client.messages \
-#                 .create(
-#                      body="Testing for Outbound SMS from Text4Wx.",
-#                      from_=twil_num,
-#                      to=real_num
-#                  )
 
 
 if __name__ == "__main__":
