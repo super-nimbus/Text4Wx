@@ -6,6 +6,7 @@ from twilio.rest import Client
 from twilio.twiml.messaging_response import Body, Message, Redirect, MessagingResponse
 from twilio import twiml
 from flask import Flask, request
+from boto.s3.connection import S3Connection
 load_dotenv()
 
 app = Flask(__name__)
@@ -94,7 +95,7 @@ def getReport(r_loc, r_type, pt):
     #print(r_loc)
     print(pt)
 
-    wx_auth = os.getenv('wx_auth')
+    wx_auth = S3Connection(os.environ['WX_AUTH'])
 
     headers = {
         'Authorization': wx_auth
@@ -164,4 +165,4 @@ def getReport(r_loc, r_type, pt):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
