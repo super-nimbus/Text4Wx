@@ -10,7 +10,7 @@ load_dotenv()
 
 app = Flask(__name__)
 
-@app.route('/', methods = ['POST'])
+@app.route('/sms/', methods = ['POST'])
 def home():
     #Define Response
     resp = MessagingResponse()
@@ -94,7 +94,7 @@ def getReport(r_loc, r_type, pt):
     #print(r_loc)
     print(pt)
 
-    wx_auth = os.getenv('wx_auth')
+    wx_auth = os.environ.get('WX_AUTH')
 
     headers = {
         'Authorization': wx_auth
@@ -163,5 +163,9 @@ def getReport(r_loc, r_type, pt):
 #                  )
 
 
+@app.route('/')
+def index():
+    return "<h1>Welcome to the Text4Wx Page!</h1>"
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(threaded=True, port=5000)
