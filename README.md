@@ -2,8 +2,8 @@
 Aviation Weather Reports by Text
 
 **+1 (587) 806-3827**
-**+1 (587) 80-METAR**
 
+**+1 (587) 80-METAR**
 
 
 ## Receive METARs & TAFs by text

@@ -87,6 +87,7 @@ def home():
 ###########################################################
 
 # NEED TO SET UP PLAINTEXT FUNCTIONALITY
+# Get Report from API
 def getReport(r_loc, r_type, pt):
 
 
@@ -100,8 +101,6 @@ def getReport(r_loc, r_type, pt):
         'Authorization': wx_auth
     }
 
-    #print(f"https://avwx.rest/api/{r_type.lower()}/{r_loc.upper()}")
-
     #GET REPORT AS QUERIED
     response = requests.get(f"https://avwx.rest/api/{r_type}/{r_loc}", headers=headers)
 
@@ -113,9 +112,11 @@ def getReport(r_loc, r_type, pt):
 
     if (r_type == 'station'):
         
-        runways = ""
+        
         latitude = '{:4.7}'.format(parse['latitude'])
         longitude = '{:4.7}'.format(parse['longitude'])
+
+        runways = ""
         for runway in parse['runways']:
             if (int(runway['ident1'][:2]) + 18 == int(runway['ident2'][:2]) or int(runway['ident1'][:2]) == int(runway['ident2'][:2]) + 18):
                 runways = runways + f"{runway['ident1']}/{runway['ident2']}: {runway['length_ft']} by {runway['width_ft']} ft\n"
@@ -135,7 +136,7 @@ def getReport(r_loc, r_type, pt):
         print(clouds)
 
         body = f"Station: {r_loc.upper()}\nIssued: {parse['time']['dt']}\nWinds: {parse['wind_speed']['repr']} knots from {parse['wind_direction']['repr']} degrees\nVisibility: {parse['visibility']['repr']} statute miles\nCloud layers: {clouds}\nTemperature: {parse['temperature']['repr']} C\nDewpoint: {parse['dewpoint']['repr']} C\nAltimeter setting: {parse['altimeter']['value']}\n"
-        print('end body')
+        
         print(body)
         return(body)
     
