@@ -1,7 +1,8 @@
 # Text4Wx
 Aviation Weather Reports by Text
 
-**+1 (678) 621-2178**
+**+1 (587) 806-3827**
+**+1 (587) 80-METAR**
 
 
 
@@ -12,19 +13,23 @@ Make use of SMS speed and dependability to quickly and reliably receive any avia
 
 
 ## How to use
-**NOTE:** Currently in pre-release, all phone numbers must be whitelisted prior to use.
+**NOTE:** Service is up and running 24/7.
 
 ### METAR/TAF
-Text "<METAR/TAF> <\ICAO STATION ID>\" (case insensitive) to **+1 (678) 621-2178** to receive the latest forecast for the requested station.
+Text "<METAR/TAF> <\ICAO STATION ID>\" (case insensitive) to **+1 (587) 806-3827**
+ to receive the latest forecast for the requested station.
 
-### PLAINTEXT METAR/TAF
-Text "<METAR/TAF> <\ICAO STATION ID>\ pt" (case insensitive) to **+1 (678) 621-2178** to receive the latest forecast for the requested station.
+### PLAINTEXT METAR/TAF (DISABLED)
+Text "<METAR/TAF> <\ICAO STATION ID>\ pt" (case insensitive) to **+1 (587) 806-3827**
+ to receive the latest forecast for the requested station.
 
 ### STATION INFO
-Text "INFO <\ICAO STATION ID>\" (case insensitive) to **+1 (678) 621-2178** to receive reporting station information.
+Text "INFO <\ICAO STATION ID>\" (case insensitive) to **+1 (587) 806-3827**
+ to receive reporting station information.
 
 ### HELP
-Text "HELP" (case insensitive) to **+1 (678) 621-2178** to receive a list of commands for this service.
+Text "HELP" (case insensitive) to **+1 (587) 806-3827**
+ to receive a list of commands for this service.
 
 
 ## To-Do
