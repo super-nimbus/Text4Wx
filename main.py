@@ -21,6 +21,7 @@ def home():
     body = request.form['Body']
 
     query = body.split()
+    qlength = len(query)
 
     #Determine Report Type
     r_type = query[0].lower()
@@ -34,14 +35,14 @@ def home():
     
     #Determine Plaintext
     try:
-        if query[-1].lower() == 'pt':
+        if query[-1].lower() == 'pt' or query[-1].lower() == 'plaintext':
             pt = True
         else:
             pt = False
     except:
         pt = False
 
-    print(r_type)
+    #print(r_type)
 
     #Query for help: Configured with Twilio Advanced Opt-Out --> see Twilio Console
     if r_type == 'help':
@@ -93,7 +94,7 @@ def getReport(r_loc, r_type, pt):
 
     #print(r_type)
     #print(r_loc)
-    print(pt)
+    #print(pt)
 
     wx_auth = os.environ.get('WX_AUTH')
 
