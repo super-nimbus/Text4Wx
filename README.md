@@ -1,4 +1,4 @@
-# Text4Wx
+# WxByText
 Aviation Weather Reports by Text
 
 **+1 (587) 806-3827**
@@ -16,7 +16,7 @@ Make use of SMS speed and dependability to quickly and reliably receive any avia
 **NOTE:** Service is up and running 24/7.
 
 ### METAR/TAF
-Text "<METAR/TAF> <\ICAO STATION ID>\" (case insensitive) to **+1 (587) 806-3827**
+Text "<METAR/TAF> <ICAO STATION ID>" (case insensitive) to **+1 (587) 806-3827**
  to receive the latest forecast for the requested station.
 
 ### PLAINTEXT METAR/TAF (DISABLED)
@@ -41,4 +41,4 @@ Text "HELP" (case insensitive) to **+1 (587) 806-3827**
 
 
 #### Disclaimer
-Text4Wx is not responsible for any of the data provided. Interpretation and utilization of the data provided is at the sole discretion of the user. Data provided from NOAA ADDS. 100% Service Availability is not Guaranteed.
+WxByText is not responsible for any of the data provided. Interpretation and utilization of the data provided is at the sole discretion of the user. Data provided from NOAA ADDS. 100% Service Availability is not Guaranteed.
