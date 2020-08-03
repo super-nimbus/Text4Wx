@@ -16,10 +16,10 @@ Make use of SMS speed and dependability to quickly and reliably receive any avia
 **NOTE:** Service is up and running 24/7.
 
 ### METAR/TAF
-Text "<METAR/TAF> <ICAO STATION ID>" (case insensitive) to **+1 (587) 806-3827**
+Text "<METAR/TAF> <\ICAO STATION ID>\" (case insensitive) to **+1 (587) 806-3827**
  to receive the latest forecast for the requested station.
 
-### PLAINTEXT METAR/TAF (DISABLED)
+### PLAINTEXT METAR/TAF (FEATURE DISABLED)
 Text "<METAR/TAF> <\ICAO STATION ID>\ pt" (case insensitive) to **+1 (587) 806-3827**
  to receive the latest forecast for the requested station.
 
